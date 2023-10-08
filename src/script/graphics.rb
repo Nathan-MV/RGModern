@@ -218,7 +218,7 @@ module Graphics
 
   # 画面和窗口的大小
   @@width = 640
-  @@height = 480
+  @@height = 360
 
   @@freeze_bitmap = nil
   @@current_bitmap = nil
