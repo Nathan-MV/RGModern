@@ -214,7 +214,7 @@ module Graphics
   @@frame_count = 0
 
   # 帧率，在 Graphics.update 中使用以限制逻辑线程的运行速度
-  @@frame_rate = 60
+  @@frame_rate = Float::INFINITY
 
   # 画面和窗口的大小
   @@width = 640
