@@ -38,7 +38,7 @@ jobs:
         with:
           path: |
             packages/download
-          key: ${{ runner.os }}-${{ hashFiles('Makefile') }}
+          key: ${{ hashFiles('Makefile') }}
 
       - name: Download Miscs
         shell: msys2 {0}
@@ -56,4 +56,4 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: windows
-          path: build
+          path: src/build
