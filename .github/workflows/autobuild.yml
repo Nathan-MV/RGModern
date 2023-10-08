@@ -1,12 +1,9 @@
-name: Build in MSYS2 UCRT Environment
+name: Automatic Build
+
 on:
-  release:
-    types: [published]
   push:
-    branches: |
-      master
-      dev
-    tags: v1.*
+    branches:
+      - '*'
 
 jobs:
   build:
@@ -36,14 +33,14 @@ jobs:
           cp /ucrt64/bin/mingw32-make /ucrt64/bin/make
           make envs
 
-      - name: Download Miscs
-        shell: msys2 {0}
-        run: |
-          wget -q http://7niu.gxmatmars.com/p1/RGModern/misc.7z
-          make misc
-
       - name: Build
         shell: msys2 {0}
         run: |
           make
           ldd main
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: windows
+          path: build
