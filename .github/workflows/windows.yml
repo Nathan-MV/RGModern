@@ -21,17 +21,18 @@ jobs:
             mingw-w64-ucrt-x86_64-make
 
       - name: Checkout Master
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           ref: master
           submodules: recursive
+          sparse-checkout: |
+            third_party/ruby
 
       - name: Make Envs
         shell: msys2 {0}
         run: |
           pacman -S --noconfirm --needed --quiet --noprogressbar git mingw-w64-ucrt-x86_64-gcc mingw-w64-ucrt-x86_64-make
           cp /ucrt64/bin/mingw32-make /ucrt64/bin/make
-          cp /opt/RGModern/third_party/ruby /ucrt64/bin/make
           make envs
 
       - name: Cache dependencies
