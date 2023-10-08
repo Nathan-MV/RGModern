@@ -31,13 +31,14 @@ jobs:
         run: |
           pacman -S --noconfirm --needed --quiet --noprogressbar git mingw-w64-ucrt-x86_64-gcc mingw-w64-ucrt-x86_64-make
           cp /ucrt64/bin/mingw32-make /ucrt64/bin/make
+          cd third_party/ruby
           make envs
 
       - name: Cache dependencies
         uses: actions/cache@v3
         with:
           path: |
-            build-mingw64
+            packages/download
           key: ${{ runner.os }}-${{ hashFiles('Makefile') }}
 
       - name: Build
