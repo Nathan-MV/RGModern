@@ -43,7 +43,7 @@ miscs += Project1/*.dll Project1/RPGXP.chm Project1/RPGXP.chw
 .PHONY: all envs ruby doc
 
 envs:
-	apt install -y $(pkgs_fedora)
+	sudo apt install -y $(pkgs_fedora)
 	mkdir -p $(path_download)
 
 ruby : $(lib_ruby)
