@@ -20,6 +20,8 @@ jobs:
         run: |
           sudo apt-get update -q
           sudo apt-get install -y git build-essential
+          sudo apt-get install -y sdl2-dev sdl2-ttf-dev sdl2-image-dev sdl2-mixer-dev sdl2-gfx-dev sdl2-net-dev zlib1g-dev libzip-dev libyaml-dev bison libffi-dev libgmp-dev upx p7zip-full vim unzip
+
 
       - name: Make Envs
         run: |
