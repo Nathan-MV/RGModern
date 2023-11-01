@@ -25,9 +25,9 @@ configure_ruby = --disable-install-doc --disable-jit-support --disable-rubygems 
 # -----------------------------------------------
 # Fedora packages (including SDL2 library)
 # -----------------------------------------------
-pkgs = SDL2-dev SDL2_ttf-dev SDL2_image-dev SDL2_mixer-dev SDL2_gfx-dev SDL2_net-dev zlib libzip libyaml
+pkgs = libsdl2-dev libsdl2-ttf-dev libsdl2-image-dev libsdl2-mixer-dev libsdl2-gfx-dev libsdl2-net-dev zlib1g-dev libzip-dev libyaml-dev
 pkgs_fedora = $(addprefix $(FEDORA_PACKAGE_PREFIX),$(pkgs))
-pkgs_fedora += bison libffi gmp upx p7zip vim unzip
+pkgs_fedora += bison libffi-dev libgmp-dev upx p7zip-full vim unzip
 
 # -----------------------------------------------
 # Misc
