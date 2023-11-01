@@ -27,7 +27,7 @@ configure_ruby = --disable-install-doc --disable-jit-support --disable-rubygems 
 # -----------------------------------------------
 pkgs = libsdl2-dev libsdl2-ttf-dev libsdl2-image-dev libsdl2-mixer-dev libsdl2-gfx-dev libsdl2-net-dev zlib1g-dev libzip-dev libyaml-dev
 pkgs_fedora = $(addprefix $(FEDORA_PACKAGE_PREFIX),$(pkgs))
-pkgs_fedora += bison libffi-dev libgmp-dev upx p7zip-full vim unzip
+pkgs_fedora += bison libffi-dev libgmp-dev upx p7zip-full vim unzip build-essential
 
 # -----------------------------------------------
 # Misc
