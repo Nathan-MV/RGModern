@@ -112,7 +112,7 @@ clibs_static = $(clibs) $(addprefix -l,$(libs_dynamic)) $(addprefix -l,$(libs))
 
 .PHONY : clean publish misc envs headers
 
-.DEFAULT_GOAL := main.exe
+.DEFAULT_GOAL := main
 
 $(libgch) : ./src/lib/lib.hpp
 	@echo "compile $@"
@@ -146,7 +146,7 @@ debug.exe : ./src/main.cpp Makefile icon.o
 	@rm -f $(libgch)
 	@$(cc) $< -o $@ $(cflags) $(clibs_static) $(cflags_debug)
 
-main.exe : main.o icon.o
+main : main.o icon.o
 	@echo "link $@"
 	@$(cc) $< -o $@ $(cflags) $(cflags_develop) $(clibs_static)
 

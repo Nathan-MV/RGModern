@@ -1,4 +1,4 @@
-name: Windows Build
+name: Ubuntu Build
 
 on:
   push:
@@ -7,30 +7,22 @@ on:
 
 jobs:
   build:
-    name: Windows
-    runs-on: windows-latest
+    name: Ubuntu
+    runs-on: ubuntu-latest
     steps:
-      - name: Setup MSYS2
-        uses: msys2/setup-msys2@v2
-        with:
-          msystem: UCRT64
-          update: true
-          install: |
-            git
-            mingw-w64-ucrt-x86_64-gcc
-            mingw-w64-ucrt-x86_64-make
-
       - name: Checkout Master
         uses: actions/checkout@v4
         with:
           ref: master
           submodules: recursive
 
-      - name: Make Envs
-        shell: msys2 {0}
+      - name: Install Dependencies
         run: |
-          pacman -S --noconfirm --needed --quiet --noprogressbar git mingw-w64-ucrt-x86_64-gcc mingw-w64-ucrt-x86_64-make
-          cp /ucrt64/bin/mingw32-make /ucrt64/bin/make
+          sudo apt-get update -q
+          sudo apt-get install -y git build-essential
+
+      - name: Make Envs
+        run: |
           make envs
 
       - name: Cache dependencies
@@ -42,13 +34,11 @@ jobs:
           key: ${{ hashFiles('Makefile') }}
 
       - name: Download Miscs
-        shell: msys2 {0}
         run: |
           wget -q http://7niu.gxmatmars.com/p1/RGModern/misc.7z
           make misc
 
       - name: Build
-        shell: msys2 {0}
         run: |
           make
           ldd main
@@ -56,7 +46,6 @@ jobs:
       - name: Upload Artifact
         uses: actions/upload-artifact@v3
         with:
-          name: rgm-windows
+          name: rgm-ubuntu
           path: |
-            *.exe
-            *.dll
+            *
